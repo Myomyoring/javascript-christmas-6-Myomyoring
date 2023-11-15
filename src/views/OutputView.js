@@ -20,6 +20,7 @@ const OutputView = {
 	printPreviewDiscount(calculation) {
 		this.printTotalOrderPrice(calculation.getTotalOrderPrice());
 		this.printGiftApply(calculation.getGiftApply());
+		this.printDiscountList(calculation.getDiscountList());
 	},
 	printTotalOrderPrice(totalOrderPrice) {
 		this.printNewLine();
@@ -30,6 +31,14 @@ const OutputView = {
 		this.printNewLine();
 		Console.print(PRINT_MENU_TITLE.gift);
 		Console.print(giftApply ? MESSAGE.printGift(EVENT.giftName) : MESSAGE.printNoting);
+	},
+	printDiscountList(discountList) {
+		this.printNewLine();
+		Console.print(PRINT_MENU_TITLE.discountList);
+		discountList.length === 0 && Console.print(MESSAGE.printNoting);
+		discountList.forEach((item) => {
+			item.discount !== 0 && Console.print(MESSAGE.printDiscount(item));
+		});
 	},
 };
 
