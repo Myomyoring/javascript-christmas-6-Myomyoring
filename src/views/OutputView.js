@@ -22,6 +22,7 @@ const OutputView = {
 		this.printGiftApply(calculation.getGiftApply());
 		this.printDiscountList(calculation.getDiscountList());
 		this.printTotalDiscountPrice(calculation.getTotalDiscountPrice());
+		this.printDiscountApplyPrice(calculation.getDiscountApplyPrice());
 	},
 	printTotalOrderPrice(totalOrderPrice) {
 		this.printNewLine();
@@ -45,6 +46,11 @@ const OutputView = {
 		this.printNewLine();
 		Console.print(PRINT_MENU_TITLE.totalDiscountPrice);
 		Console.print(MESSAGE.printTotalDiscount(totalDiscountPrice));
+	},
+	printDiscountApplyPrice(discountApplyPrice) {
+		this.printNewLine();
+		Console.print(PRINT_MENU_TITLE.discountApplyPrice);
+		Console.print(MESSAGE.printPrice(discountApplyPrice));
 	},
 };
 
