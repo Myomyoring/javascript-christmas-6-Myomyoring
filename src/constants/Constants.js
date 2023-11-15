@@ -25,6 +25,7 @@ export const MENU = [
 	{ name: '티본스테이크', category: 'main', price: 55000 },
 	{ name: '바비큐립', category: 'main', price: 54000 },
 	{ name: '해산물파스타', category: 'main', price: 35000 },
+	{ name: '크리스마스파스타', category: 'main', price: 25000 },
 	{ name: '초코케이크', category: 'dessert', price: 15000 },
 	{ name: '아이스크림', category: 'dessert', price: 5000 },
 	{ name: '제로콜라', category: 'beverage', price: 3000 },
