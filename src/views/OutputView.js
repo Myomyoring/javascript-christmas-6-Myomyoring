@@ -19,11 +19,17 @@ const OutputView = {
 	},
 	printPreviewDiscount(calculation) {
 		this.printTotalOrderPrice(calculation.getTotalOrderPrice());
+		this.printGiftApply(calculation.getGiftApply());
 	},
 	printTotalOrderPrice(totalOrderPrice) {
 		this.printNewLine();
 		Console.print(PRINT_MENU_TITLE.totalOrderPrice);
 		Console.print(MESSAGE.printPrice(totalOrderPrice));
+	},
+	printGiftApply(giftApply) {
+		this.printNewLine();
+		Console.print(PRINT_MENU_TITLE.gift);
+		Console.print(giftApply ? MESSAGE.printGift(EVENT.giftName) : MESSAGE.printNoting);
 	},
 };
 
