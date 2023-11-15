@@ -17,6 +17,14 @@ const OutputView = {
 		Console.print(PRINT_MENU_TITLE.orderMenu);
 		orderSheet.forEach((menu) => Console.print(MESSAGE.printMenu(menu)));
 	},
+	printPreviewDiscount(calculation) {
+		this.printTotalOrderPrice(calculation.getTotalOrderPrice());
+	},
+	printTotalOrderPrice(totalOrderPrice) {
+		this.printNewLine();
+		Console.print(PRINT_MENU_TITLE.totalOrderPrice);
+		Console.print(MESSAGE.printPrice(totalOrderPrice));
+	},
 };
 
 export default OutputView;

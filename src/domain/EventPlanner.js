@@ -28,6 +28,7 @@ class EventPlanner {
 		const calculation = new MenuCalculation(this.#date, orderMenuInfo, orderSheet);
 		OutputView.printPreview(this.#date);
 		OutputView.printMenu(orderSheet);
+		OutputView.printPreviewDiscount(calculation);
 	}
 }
 

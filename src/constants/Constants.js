@@ -7,6 +7,7 @@ export const MESSAGE = {
 	printNoting: '없음',
 	preview: (date) => `12월 ${date}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!`,
 	printMenu: (menu) => `${menu.menuName} ${menu.menuCount}개`,
+	printPrice: (price) => `${Utils.priceFormat(price)}원`,
 };
 export const ERROR = {
 	visitDate: '[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.',
