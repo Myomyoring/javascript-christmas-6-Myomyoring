@@ -8,9 +8,8 @@ class Validation {
 		const notNumber = Number.isNaN(date);
 		if (outOfRange || empty || notNumber) {
 			Console.print(ERROR.visitDate);
-			return false;
+			throw new Error();
 		}
-		return true;
 	}
 	static menuCount(count) {
 		if (count < 1 || !count || Number.isNaN(count)) {

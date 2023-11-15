@@ -10,11 +10,13 @@ class EventPlanner {
 		this.#date = 0;
 	}
 	async getDate() {
-		const date = Number(await InputView.readDate());
-		if (!Validation.visitDate(date)) {
+		try {
+			const date = Number(await InputView.readDate());
+			Validation.visitDate(date);
+			this.#date = date;
+		} catch (error) {
 			return this.getDate();
 		}
-		this.#date = date;
 	}
 	async orderMenu() {
 		const userOrder = await InputView.readMenu();
