@@ -30,8 +30,8 @@ class Validation {
 		}
 	}
 	static menuOnlyBeverage(menuList) {
-		const onlyBeverage = menuList.some((menu) => menu.category !== 'beverage');
-		if (!onlyBeverage) {
+		const onlyBeverage = menuList.every((menu) => menu.category === 'beverage');
+		if (onlyBeverage) {
 			throw new Error(ERROR.onlyBeverage);
 		}
 	}

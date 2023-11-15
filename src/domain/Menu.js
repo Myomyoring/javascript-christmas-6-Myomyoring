@@ -3,15 +3,17 @@ import Validation from '../validation/Validation.js';
 
 class Menu {
 	#userOrderSheet;
+	#orderMenuInfo;
 
 	constructor(userOrder) {
 		this.#userOrderSheet = [];
+		this.#orderMenuInfo = [];
 		this.#menuization(userOrder);
 	}
 	#menuization(userOrder) {
 		const orderHistory = userOrder.split(',');
 		const menuNames = this.#separate(orderHistory);
-		const orderMenuInfo = this.#validate(menuNames);
+		this.#validate(menuNames);
 	}
 	#separate(orderHistory) {
 		let totalMenuCount = 0;
@@ -28,21 +30,21 @@ class Menu {
 	}
 	#validate(menuNames) {
 		Validation.menuDuplicate(menuNames);
-		const menuList = [];
 		menuNames.forEach((userMenu) => {
 			Validation.menuExist(userMenu);
-			menuList.push(MENU.find((menu) => menu.name === userMenu));
+			this.#orderMenuInfo.push(MENU.find((menu) => menu.name === userMenu));
 		});
-		Validation.menuOnlyBeverage(menuList);
-		return menuList;
+		Validation.menuOnlyBeverage(this.#orderMenuInfo);
 	}
 	#orderSheet(menuName, count) {
-		let sheet = {};
-		sheet['menuName'] = menuName;
-		sheet['menuCount'] = count;
-		this.#userOrderSheet.push(sheet);
+		let order = {};
+		order['menuName'] = menuName;
+		order['menuCount'] = count;
+		this.#userOrderSheet.push(order);
 	}
-	#calculator() {}
+	getOrderInfo() {
+		return { orderMenuInfo: this.#orderMenuInfo, orderSheet: this.#userOrderSheet };
+	}
 }
 
 export default Menu;
