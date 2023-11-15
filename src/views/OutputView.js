@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { ASCII_TEXT, MESSAGE, PRINT_MENU_TITLE } from '../constants/Constants.js';
+import { ASCII_TEXT, BADGE, MESSAGE, PRINT_MENU_TITLE } from '../constants/Constants.js';
 
 const OutputView = {
 	printNewLine() {
@@ -23,6 +23,7 @@ const OutputView = {
 		this.printDiscountList(calculation.getDiscountList());
 		this.printTotalDiscountPrice(calculation.getTotalDiscountPrice());
 		this.printDiscountApplyPrice(calculation.getDiscountApplyPrice());
+		this.printBadge(calculation.getTotalDiscountPrice());
 	},
 	printTotalOrderPrice(totalOrderPrice) {
 		this.printNewLine();
@@ -51,6 +52,13 @@ const OutputView = {
 		this.printNewLine();
 		Console.print(PRINT_MENU_TITLE.discountApplyPrice);
 		Console.print(MESSAGE.printPrice(discountApplyPrice));
+	},
+	printBadge(totalDiscountPrice) {
+		this.printNewLine();
+		const badgeRange = Object.keys(BADGE);
+		const maxRange = Math.max(...badgeRange.filter((range) => range < totalDiscountPrice));
+		Console.print(PRINT_MENU_TITLE.badge);
+		Console.print(BADGE[maxRange] ?? MESSAGE.printNoting);
 	},
 };
 
