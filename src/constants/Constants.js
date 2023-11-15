@@ -10,6 +10,7 @@ export const MESSAGE = {
 	printPrice: (price) => `${Utils.priceFormat(price)}원`,
 	printGift: (gift) => `${gift} 1개`,
 	printDiscount: (item) => `${item.type}: -${Utils.priceFormat(item.discount)}원`,
+	printTotalDiscount: (price) => `${price === 0 ? '' : '-'}${Utils.priceFormat(price)}원`,
 };
 export const ERROR = {
 	visitDate: '[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.',

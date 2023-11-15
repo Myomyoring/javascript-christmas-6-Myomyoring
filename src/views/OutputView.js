@@ -21,6 +21,7 @@ const OutputView = {
 		this.printTotalOrderPrice(calculation.getTotalOrderPrice());
 		this.printGiftApply(calculation.getGiftApply());
 		this.printDiscountList(calculation.getDiscountList());
+		this.printTotalDiscountPrice(calculation.getTotalDiscountPrice());
 	},
 	printTotalOrderPrice(totalOrderPrice) {
 		this.printNewLine();
@@ -39,6 +40,11 @@ const OutputView = {
 		discountList.forEach((item) => {
 			item.discount !== 0 && Console.print(MESSAGE.printDiscount(item));
 		});
+	},
+	printTotalDiscountPrice(totalDiscountPrice) {
+		this.printNewLine();
+		Console.print(PRINT_MENU_TITLE.totalDiscountPrice);
+		Console.print(MESSAGE.printTotalDiscount(totalDiscountPrice));
 	},
 };
 
