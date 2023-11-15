@@ -1,4 +1,3 @@
-import { EVENT } from '../constants/Constants.js';
 import Validation from '../validation/Validation.js';
 import InputView from '../views/InputView.js';
 import OutputView from '../views/OutputView.js';
@@ -12,14 +11,20 @@ class EventPlanner {
 	}
 	async getDate() {
 		const date = Number(await InputView.readDate());
-		Validation.visitDate(date);
+		if (!Validation.visitDate(date)) {
+			return this.getDate();
+		}
 		this.#date = date;
 	}
 	async orderMenu() {
 		const userOrder = await InputView.readMenu();
-		const menuization = new Menu(userOrder);
-		const { orderMenuInfo, orderSheet } = menuization.getOrderInfo();
-		return { orderMenuInfo, orderSheet };
+		try {
+			const menuization = new Menu(userOrder);
+			const { orderMenuInfo, orderSheet } = menuization.getOrderInfo();
+			return { orderMenuInfo, orderSheet };
+		} catch (error) {
+			return this.orderMenu();
+		}
 	}
 	async eventPlanner() {
 		OutputView.printWelcome();

@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { ASCII_TEXT, BADGE, MESSAGE, PRINT_MENU_TITLE } from '../constants/Constants.js';
+import { ASCII_TEXT, BADGE, EVENT, MESSAGE, PRINT_MENU_TITLE } from '../constants/Constants.js';
 
 const OutputView = {
 	printNewLine() {

@@ -21,20 +21,22 @@ class Menu {
 			const menu = orderMenu.split('-');
 			const menuName = menu[0];
 			const count = Number(menu[1]);
-			Validation.menuCount(count);
+			if (!Validation.menuCount(count)) throw new Error();
 			totalMenuCount += count;
 			this.#orderSheet(menuName, count);
 		});
-		Validation.menuCount(totalMenuCount);
+		if (!Validation.menuCount(totalMenuCount)) throw new Error();
 		return this.#userOrderSheet.map((menu) => menu.menuName);
 	}
 	#validate(menuNames) {
-		Validation.menuDuplicate(menuNames);
+		if (!Validation.menuDuplicate(menuNames)) {
+			throw new Error();
+		}
 		menuNames.forEach((userMenu) => {
-			Validation.menuExist(userMenu);
+			if (!Validation.menuExist(userMenu)) throw new Error();
 			this.#orderMenuInfo.push(MENU.find((menu) => menu.name === userMenu));
 		});
-		Validation.menuOnlyBeverage(this.#orderMenuInfo);
+		if (!Validation.menuOnlyBeverage(this.#orderMenuInfo)) throw new Error();
 	}
 	#orderSheet(menuName, count) {
 		let order = {};

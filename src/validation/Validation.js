@@ -1,3 +1,4 @@
+import { Console } from '@woowacourse/mission-utils';
 import { ERROR, MENU } from '../constants/Constants.js';
 
 class Validation {
@@ -6,34 +7,45 @@ class Validation {
 		const empty = date.length === 0;
 		const notNumber = Number.isNaN(date);
 		if (outOfRange || empty || notNumber) {
-			throw new Error(ERROR.visitDate);
+			Console.print(ERROR.visitDate);
+			return false;
 		}
+		return true;
 	}
 	static menuCount(count) {
 		if (count < 1 || !count || Number.isNaN(count)) {
-			throw new Error(ERROR.menu);
+			Console.print(ERROR.menu);
+			return false;
 		}
 		if (count > 20) {
-			throw new Error(ERROR.countOver);
+			Console.print(ERROR.countOver);
+			return false;
 		}
+		return true;
 	}
 	static menuDuplicate(menuList) {
 		const duplicate = new Set(menuList).size !== menuList.length;
 		if (duplicate) {
-			throw new Error(ERROR.menu);
+			Console.print(ERROR.menu);
+			return false;
 		}
+		return true;
 	}
 	static menuExist(userMenu) {
 		const exist = MENU.some((menu) => menu.name === userMenu);
 		if (!exist) {
-			throw new Error(ERROR.menu);
+			Console.print(ERROR.menu);
+			return false;
 		}
+		return true;
 	}
 	static menuOnlyBeverage(menuList) {
 		const onlyBeverage = menuList.every((menu) => menu.category === 'beverage');
 		if (onlyBeverage) {
-			throw new Error(ERROR.onlyBeverage);
+			Console.print(ERROR.onlyBeverage);
+			return false;
 		}
+		return true;
 	}
 }
 

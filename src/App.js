@@ -4,7 +4,7 @@ class App {
 	async run() {
 		try {
 			const planner = new EventPlanner();
-			planner.eventPlanner();
+			await planner.eventPlanner();
 		} catch (error) {
 			throw error;
 		}
