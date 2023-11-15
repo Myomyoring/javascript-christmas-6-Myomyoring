@@ -8,6 +8,8 @@ class MenuCalculation {
 	#totalOrderPrice;
 	#discountList;
 	#giftApply;
+	#totalDiscountPrice;
+	#discountApplyPrice;
 
 	constructor(date, orderMenuInfo, orderSheet) {
 		this.#date = date;
@@ -16,6 +18,8 @@ class MenuCalculation {
 		this.#totalOrderPrice = 0;
 		this.#discountList = [];
 		this.#giftApply = false;
+		this.#totalDiscountPrice = 0;
+		this.#discountApplyPrice = 0;
 		this.#calculator();
 	}
 	#calculator() {
@@ -27,6 +31,8 @@ class MenuCalculation {
 		if (this.#totalOrderPrice >= EVENT.rangeGift) {
 			this.#specialGift();
 		}
+		this.#discountList.forEach((item) => (this.#totalDiscountPrice += item.discount));
+		this.#discountApplyPrice += this.#totalOrderPrice - this.#totalDiscountPrice;
 	}
 	#addDiscountItem(type, discount) {
 		let item = {};
@@ -61,7 +67,7 @@ class MenuCalculation {
 			const match = menuInfo.category === (weekend ? 'main' : 'dessert');
 			return totalDiscount + (match ? menu.menuCount * EVENT.weekDefaultDiscount : 0);
 		}, 0);
-		this.#addDiscountItem(weekend ? DISCOUNT_NAME.weekend : DISCOUNT.weekday, discount);
+		this.#addDiscountItem(weekend ? DISCOUNT_NAME.weekend : DISCOUNT_NAME.weekday, discount);
 	}
 	#specialDiscount(dayOfWeek) {
 		const range = EVENT.specialDay.includes(dayOfWeek) || EVENT.specialDay.includes(this.#date);
@@ -73,6 +79,7 @@ class MenuCalculation {
 		const gift = MENU.find((menu) => menu.name === EVENT.giftName);
 		this.#addDiscountItem(DISCOUNT_NAME.gift, gift.price);
 		this.#giftApply = true;
+		this.#discountApplyPrice += gift.price;
 	}
 	getTotalOrderPrice() {
 		return this.#totalOrderPrice;
@@ -82,6 +89,12 @@ class MenuCalculation {
 	}
 	getGiftApply() {
 		return this.#giftApply;
+	}
+	getTotalDiscountPrice() {
+		return this.#totalDiscountPrice;
+	}
+	getDiscountApplyPrice() {
+		return this.#discountApplyPrice;
 	}
 }
 
