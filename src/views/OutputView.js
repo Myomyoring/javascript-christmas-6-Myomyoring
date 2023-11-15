@@ -8,15 +8,14 @@ const OutputView = {
 	printWelcome() {
 		Console.print(ASCII_TEXT.welcome);
 		Console.print(MESSAGE.welcome);
-		this.printNewLine();
 	},
 	printPreview(date) {
 		Console.print(MESSAGE.preview(date));
-		this.printNewLine();
 	},
-	printMenu() {
+	printMenu(orderSheet) {
 		this.printNewLine();
 		Console.print(PRINT_MENU_TITLE.orderMenu);
+		orderSheet.forEach((menu) => Console.print(MESSAGE.printMenu(menu)));
 	},
 };
 

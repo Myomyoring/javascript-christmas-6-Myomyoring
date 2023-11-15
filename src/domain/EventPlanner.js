@@ -26,7 +26,8 @@ class EventPlanner {
 		await this.getDate();
 		const { orderMenuInfo, orderSheet } = await this.orderMenu();
 		const calculation = new MenuCalculation(this.#date, orderMenuInfo, orderSheet);
-		OutputView.printPreview(date);
+		OutputView.printPreview(this.#date);
+		OutputView.printMenu(orderSheet);
 	}
 }
 
